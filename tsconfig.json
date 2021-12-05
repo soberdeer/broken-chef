@@ -1,0 +1,44 @@
+{
+  "plugins": [],
+  "include": [
+    "./",
+    "node_modules/@types",
+    "next-env.d.ts",
+    "declaration.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "baseUrl": ".",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "types": [
+      "node",
+    ],
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "configuration/types"
+    ],
+    "baseUrl": ".",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "isolatedModules": true
+  }
+}

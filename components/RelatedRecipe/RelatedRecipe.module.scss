@@ -1,0 +1,43 @@
+.recipe {
+  display: flex;
+  width: 100%;
+  padding-top: 28px;
+  border: 1px solid transparent;
+  border-top-color: #edecea;
+  padding-bottom: 28px;
+}
+
+.last {
+  border-bottom-color: #edecea;
+}
+
+.title {
+  margin-bottom: 0;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 28px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.timing {
+    font-style: italic;
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -.015em;
+    margin-top: 0px;
+}
+
+.content {
+  padding-left: 42px;
+  max-width: calc(60% - 42px);
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button {
+  margin-top: 14px;
+}

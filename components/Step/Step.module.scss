@@ -1,0 +1,81 @@
+.step {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 42px calc((100% - 1110px) / 2);
+}
+
+.noBottomPadding {
+  padding-bottom: 0;
+}
+
+.padded-large {
+  padding-top: 84px;
+}
+
+.step:first-of-type {
+  margin-top: 0 !important;
+}
+
+.innerComponent {
+  width: 100%;
+  padding-left: calc((100% - 700px) / 2);
+  padding-right: calc((100% - 700px) / 2);
+  box-sizing: border-box;
+}
+
+.directions {
+  font-family: Roboto, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  line-height: 28px;
+  color: #3D3935;
+
+  & * {
+    font-family: Roboto, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    line-height: 28px;
+    color: #3D3935;
+  }
+}
+
+.circleWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  line-height: 32px;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+  text-align: center;
+  font-size: 32px;
+  font-family: Roboto, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+}
+
+.imageContainer {
+  width: 100%;
+  max-height: 740px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.image {
+  max-width: 1000px;
+  max-height: 740px;
+  object-fit: contain;
+}

@@ -1,0 +1,16 @@
+.text {
+  line-height: normal;
+  margin-top: 0;
+  font-family: Roboto, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  font-size: 16px;
+  color: #3D3935;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
