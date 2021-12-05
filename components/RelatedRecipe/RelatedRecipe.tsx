@@ -29,10 +29,10 @@ export default function RelatedRecipe({
     <div className={cx(className, classes.relatedRecipe)}>
       {data ? (
         <div className={cx(classes.recipe, {[classes.last]: last})}>
-          <img className={classes.image} width={280} src={data.heroImage} />
+          <img className={classes.image} width={280} src={data.heroImage || data.image} />
           <div className={classes.content}>
             <Text className={classes.title}>{data.title}</Text>
-            <Text className={classes.timing}>{`Cooking time: ${data.timing}`}</Text>
+            {data.timing && <Text className={classes.timing}>{`Cooking time: ${data.timing}`}</Text>}
             <Button
               className={classes.button}
               href={link}

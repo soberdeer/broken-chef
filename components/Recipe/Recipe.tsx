@@ -39,8 +39,6 @@ export default function Recipe({
       .replace(/\[f (.*?)\]/g, (match, p1) => `${((parseFloat(p1) - 32) * (5 / 9)).toFixed(1)}°C`)
       .replace(/\*(.*?)\*/g, '<span style="font-weight: bold">$1</span>')
       .replace(/\[link ([^\s]+) (.*?)\]/g, '<a href="$1">$2</a>') || '';
-    const Fahrenheit = newDesc.match(/\[f (.*?)\]/g);
-    console.log(Fahrenheit)
     setDesc(newDesc);
   }, []);
 
@@ -48,14 +46,14 @@ export default function Recipe({
     <div className={classes.wrapper}>
       <div className={classes.backArrow}>
         <Button className={classes.backButton} component="a" href="/recipes">
-          <ArrowLeft size={32} color={arrowColor}/>
+          <ArrowLeft size={32} color={arrowColor} />
         </Button>
       </div>
-      <div className={classes.header} style={{ backgroundImage: `url(${heroImage})` }}>
-        <div className={classes.overlay}/>
+      <div className={classes.header} style={{ backgroundImage: `url(${heroImage || image})` }}>
+        <div className={classes.overlay} />
         <div className={cx(classes.modal, { [classes.hideModal]: !modal })}>
           <Button className={classes.closeButton} onClick={() => setModal(false)}>
-            <XCircle size={40} color="white"/>
+            <XCircle size={40} color="white" />
           </Button>
           <div className={classes.video}>
             <iframe
@@ -67,7 +65,7 @@ export default function Recipe({
         </div>
         <div className={classes.description}>
           {(youtubeId || vimeoId) && <button className={classes.playButton} onClick={() => setModal(true)}>
-              <Play style={{ marginLeft: 4 }} size={32} color="#3D3935" fill="#3D3935"/>
+            <Play style={{ marginLeft: 4 }} size={32} color="#3D3935" fill="#3D3935" />
           </button>}
           <Title order={1} className={classes.title}>{title}</Title>
           <Text className={classes.timing}>{timing}</Text>
@@ -76,22 +74,26 @@ export default function Recipe({
       {description ? (
         <Wrapper backgroundColor="white" selection>
           <div className={classes.centerContent}>
-            {desc.split('\n\n').map((item, i) => <p className={classes.text} key={i}
-                                                    dangerouslySetInnerHTML={{ __html: item }}/>)}
+            {desc.split('\n\n').map((item, i) => (
+              <p
+                className={classes.text} key={i}
+                dangerouslySetInnerHTML={{ __html: item }}
+              />
+            ))}
           </div>
         </Wrapper>
-      ) : <div/>}
+      ) : <div />}
       {ingredients?.length > 0 && (
         <Wrapper backgroundColor="#edecea">
-        <Ingredients
-          className={null}
-          ingredients={ingredients}
-          equipment={equipment}
-          recipeYield={recipeYield}
-          openModal={openModal}
-          timing={timing}
-        />
-      </Wrapper>
+          <Ingredients
+            className={null}
+            ingredients={ingredients}
+            equipment={equipment}
+            recipeYield={recipeYield}
+            openModal={openModal}
+            timing={timing}
+          />
+        </Wrapper>
       )}
 
       {steps.map((item, i) => (
