@@ -19,29 +19,30 @@ export default function Ingredients({
       <div className={classes.ingredientsWrapper}>
         <div className={classes.inner}>
           {ingredients.map((item, i) => (
-            <div className={classes.ingredient} key={i}>
-              <div className={classes.quantity}>
-                <Text className={classes.quantityText}>
-                  {
-                    item.quantity !== '0.0' ? parseFloat(item.quantity) % 1 === 0 ? parseInt(
-                      item.quantity,
-                      10,
-                    ) : item.quantity : '-'
-                  }
-                </Text>
-              </div>
-              <div className={classes.ingredientTitle}>
-                <Text className={classes.ingredientTitleText}>
+              <div className={classes.ingredient} key={i}>
+                <div className={classes.quantity}>
+                  <Text className={classes.quantityText}>
+                    {
+                      item.quantity !== '0.0' ? parseFloat(item.quantity) % 1 === 0 ? `${parseInt(
+                        item.quantity,
+                        10,
+                      )}${item.unit}` : `${item.quantity}${item.unit}` : '-'
+                    }
+                  </Text>
+                </div>
+                <div className={classes.ingredientTitle}>
+                  <Text className={classes.ingredientTitleText}>
                       <span style={{ fontWeight: 'bold' }}>
                         <button className={classes.itemButton} onClick={() => openModal(item)}>{item.title}</button>
                       </span>
-                  {(item.note || item.unit === 'a/n') &&
-                  <span>{`${item.note !== '' ? `, ${item.note}` : ''}${item.unit === 'a/n' ? ', as needed' : ''}`}</span>
-                  }
-                </Text>
+                    {(item.note || item.unit === 'a/n') &&
+                    <span>{`${item.note !== '' ? `, ${item.note}` : ''}${item.unit === 'a/n' ? ', as needed' : ''}`}</span>
+                    }
+                  </Text>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
           <div className={classes.ingredientYield}>
             {equipment?.length > 0 && (
               <div className={classes.equipment}>

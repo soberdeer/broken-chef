@@ -15,6 +15,7 @@
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
+  //gap:
 }
 
 .card {
@@ -64,7 +65,7 @@
     flex-basis: calc((100% - 94px) / 4);
   }
 
-  .matrix .card:nth-of-type(3n + 1) {
+  .matrix .card:nth-of-type(4n + 4) {
     margin-right: 0;
   }
 
