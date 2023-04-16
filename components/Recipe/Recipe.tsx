@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import cx from 'clsx';
-import { Play, ArrowLeft, XCircle } from 'react-feather';
-import Wrapper from '../Wrapper/Wrapper';
-import Button from '../Button/Button';
-import Text from '../Text/Text';
-import Title from '../Title/Title';
-import Ingredients from '../Ingredients/Ingredients';
-import Step from '../Step/Step';
-import classes from './Recipe.module.scss';
+import React, { useEffect, useState } from "react";
+import cx from "clsx";
+import { Play, ArrowLeft, XCircle } from "react-feather";
+import Wrapper from "../Wrapper/Wrapper";
+import Button from "../Button/Button";
+import Text from "../Text/Text";
+import Title from "../Title/Title";
+import Ingredients from "../Ingredients/Ingredients";
+import Step from "../Step/Step";
+import classes from "./Recipe.module.scss";
+import { types } from "util";
+import Ingredient from "../Ingredient/Ingredient";
 
 export default function Recipe({
   description,
@@ -26,22 +28,30 @@ export default function Recipe({
   yield: recipeYield,
   youtubeId,
 }) {
-  const [desc, setDesc] = useState(description || '');
-  const [arrowColor, setArrowColor] = useState('#ffffff');
+  const [desc, setDesc] = useState(description || "");
+  const [arrowColor, setArrowColor] = useState("#ffffff");
   const [modal, setModal] = useState(false);
-  const openModal = () => {
+  const [ingredient, setIngredient] = useState(null);
+
+  const openModal = (item) => {
+    setIngredient(item.ingredient.id);
   };
 
   useEffect(() => {
-    const newDesc = description?.replaceAll('<br>', '')
-      .replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold">$1</span>')
-      .replace(/\[c (.*?)\]/g, '$1°C')
-      .replace(/\[f (.*?)\]/g, (match, p1) => `${((parseFloat(p1) - 32) * (5 / 9)).toFixed(1)}°C`)
-      .replace(/\*(.*?)\*/g, '<span style="font-weight: bold">$1</span>')
-      .replace(/\[link ([^\s]+) (.*?)\]/g, '<a href="$1">$2</a>') || '';
+    const newDesc =
+      description
+        ?.replaceAll("<br>", "")
+        .replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold">$1</span>')
+        .replace(/\[c (.*?)\]/g, "$1°C")
+        .replace(
+          /\[f (.*?)\]/g,
+          (match, p1) => `${((parseFloat(p1) - 32) * (5 / 9)).toFixed(1)}°C`
+        )
+        .replace(/\*(.*?)\*/g, '<span style="font-weight: bold">$1</span>')
+        .replace(/\[link ([^\s]+) (.*?)\]/g, '<a href="$1">$2</a>') || "";
     setDesc(newDesc);
   }, []);
-
+  // console.log(ingredient)
   return (
     <div className={classes.wrapper}>
       <div className={classes.backArrow}>
@@ -49,10 +59,16 @@ export default function Recipe({
           <ArrowLeft size={32} color={arrowColor} />
         </Button>
       </div>
-      <div className={classes.header} style={{ backgroundImage: `url(${heroImage || image})` }}>
+      <div
+        className={classes.header}
+        style={{ backgroundImage: `url(${heroImage || image})` }}
+      >
         <div className={classes.overlay} />
         <div className={cx(classes.modal, { [classes.hideModal]: !modal })}>
-          <Button className={classes.closeButton} onClick={() => setModal(false)}>
+          <Button
+            className={classes.closeButton}
+            onClick={() => setModal(false)}
+          >
             <XCircle size={40} color="white" />
           </Button>
           <div className={classes.video}>
@@ -63,26 +79,42 @@ export default function Recipe({
             />
           </div>
         </div>
+        <Ingredient id={ingredient} onClose={() => setIngredient(null)} />
         <div className={classes.description}>
-          {(youtubeId || vimeoId) && <button className={classes.playButton} onClick={() => setModal(true)}>
-            <Play style={{ marginLeft: 4 }} size={32} color="#3D3935" fill="#3D3935" />
-          </button>}
-          <Title order={1} className={classes.title}>{title}</Title>
+          {(youtubeId || vimeoId) && (
+            <button
+              className={classes.playButton}
+              onClick={() => setModal(true)}
+            >
+              <Play
+                style={{ marginLeft: 4 }}
+                size={32}
+                color="#3D3935"
+                fill="#3D3935"
+              />
+            </button>
+          )}
+          <Title order={1} className={classes.title}>
+            {title}
+          </Title>
           <Text className={classes.timing}>{timing}</Text>
         </div>
       </div>
       {description ? (
         <Wrapper backgroundColor="white" selection>
           <div className={classes.centerContent}>
-            {desc.split('\n\n').map((item, i) => (
+            {desc.split("\n\n").map((item, i) => (
               <p
-                className={classes.text} key={i}
+                className={classes.text}
+                key={i}
                 dangerouslySetInnerHTML={{ __html: item }}
               />
             ))}
           </div>
         </Wrapper>
-      ) : <div />}
+      ) : (
+        <div />
+      )}
       {ingredients?.length > 0 && (
         <Wrapper backgroundColor="#edecea">
           <Ingredients
@@ -97,11 +129,8 @@ export default function Recipe({
       )}
 
       {steps.map((item, i) => (
-        <Wrapper key={i} className={i > 0 ? classes.noTop : ''}>
-          <Step
-            className={null}
-            {...item}
-          />
+        <Wrapper key={i} className={i > 0 ? classes.noTop : ""}>
+          <Step className={null} {...item} />
         </Wrapper>
       ))}
     </div>
