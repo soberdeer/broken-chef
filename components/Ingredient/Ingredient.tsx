@@ -31,7 +31,7 @@ export default function Ingredient({ id, onClose }) {
       }, 200);
     }
   }, [id]);
-
+// console.log(ingredientData)
   return (
     <Modal
       //@ts-ignore
@@ -61,7 +61,7 @@ export default function Ingredient({ id, onClose }) {
           </div>
           <div className={classes.description}>
             <Text className={classes.text}>
-              {ingredientData.textFields.description}
+              {ingredientData?.textFields?.description}
             </Text>
           </div>
         </div>
