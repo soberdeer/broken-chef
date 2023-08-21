@@ -11,7 +11,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 export default function Button<T extends React.ElementType = 'button'>({
   className,
-  component = 'button',
+  component,
   type = 'button',
   children = null,
   href = null,
@@ -34,6 +34,7 @@ export default function Button<T extends React.ElementType = 'button'>({
   }
 
   return (
+    // @ts-ignore
     <Element
       className={cx(className, classes.button)}
       type={type || 'button'}

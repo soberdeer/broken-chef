@@ -5,22 +5,25 @@ import classes from './Text.module.scss';
 
 export interface TextProps {
   className?: string;
-  children?: React.ReactNode;
+  children?: React.ReactNode | string;
   htmlFor?: string;
 }
 
 export default function Text<T extends React.ElementType = 'p'>({
   className,
-  component: Element = 'p',
+  component,
   children = null,
   ...others
 }: TextProps & ComponentType<T>) {
-  const isHtml = /<\/?[a-z][\s\S]*>/i.test(children);
+  const Element = component || 'p';
+  const isHtml = typeof children === 'string' ? /<\/?[a-z][\s\S]*>/i.test(children) : false;
 
   if (children) {
     return isHtml ? (
+      //@ts-ignore
       <Element className={cx(classes.text, className)} {...others} dangerouslySetInnerHTML={{ __html: children }} />
     ) : (
+      //@ts-ignore
       <Element className={cx(classes.text, className)} {...others}>
         {children}
       </Element>

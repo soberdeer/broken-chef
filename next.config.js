@@ -1,5 +1,4 @@
 module.exports = () => ({
-    cssModules: true,
     publicRuntimeConfig: {
       NODE_ENV: process.env.NODE_ENV,
     },
@@ -10,11 +9,8 @@ module.exports = () => ({
       locales: ['en'],
       defaultLocale: 'en',
     },
-    headers: [
-      {
-        key: 'Cache-Control',
-        value: 'private, max-age=31536000',
-      },
-    ],
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
   }
 );

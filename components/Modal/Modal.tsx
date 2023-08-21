@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import cx from "clsx";
-import { X } from "react-feather";
-import { CSSTransition } from "react-transition-group";
-import { ComponentType } from "../ComponentType";
-import Title from "../Title/Title";
-import classes from "./Modal.module.scss";
-import { useClickOutside } from "./use-click-outside";
+import React, { useEffect } from 'react';
+import cx from 'clsx';
+import { X } from 'react-feather';
+import { CSSTransition } from 'react-transition-group';
+import { ComponentType } from '../ComponentType';
+import Title from '../Title/Title';
+import classes from './Modal.module.scss';
+import { useClickOutside } from './use-click-outside';
 
 export interface TextProps {
   className?: string;
@@ -15,7 +15,7 @@ export interface TextProps {
   htmlFor?: string;
 }
 
-export default function Modal<T extends React.ElementType = "p">({
+export default function Modal<T extends React.ElementType = 'p'>({
   className,
   innerClassName,
   contentClassName,
@@ -29,17 +29,18 @@ export default function Modal<T extends React.ElementType = "p">({
 }: TextProps & ComponentType<T>) {
   // const classes = useStyles();
   // const innerRef = useRef(null);
-  const closeOnEscape = (event) => event.key === "Escape" && onClose();
+  const closeOnEscape = (event) => event.key === 'Escape' && onClose();
   const ref = useClickOutside(onClose);
 
   useEffect(() => {
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
   }, []);
 
   // useClickOutside(innerRef, onClose);
 
   return (
+    // @ts-ignore
     <CSSTransition
       in={opened}
       timeout={100}
@@ -51,7 +52,7 @@ export default function Modal<T extends React.ElementType = "p">({
         exitActive: classes.leaveActive,
       }}
     >
-      <div style={{ position: "absolute" }}>
+      <div style={{ position: 'absolute' }}>
         <div
           className={cx(classes.wrapper, className)}
           {...others}
