@@ -1,8 +1,6 @@
 export default async function fetcher(page, query) {
-  console.log('ALALA')
-  console.log(process.env.RECIPES_URL)
   return await fetch(
-    process.env.RECIPES_URL,
+    process.env.RECIPES_URL || 'https://jgv2odt81s-dsn.algolia.net/1/indexes/ChefStepsPromoted_production/query?x-algolia-agent=Algolia%20for%20JavaScript%20(3.33.0)%3B%20Browser&x-algolia-application-id=JGV2ODT81S&x-algolia-api-key=890e558aa5ce0acb553f4d251add31cb',
     {
       method: 'POST',
       headers: {
