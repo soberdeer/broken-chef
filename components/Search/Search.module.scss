@@ -11,6 +11,20 @@
   width: 100%;
 }
 
+.icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.inputSearch {
+  display: flex;
+  //flex-grow: 2;
+  align-items: center;
+}
+
+
 .inputForm {
   justify-content: center;
   flex-wrap: nowrap;
@@ -24,6 +38,25 @@
   box-sizing: border-box;
   display: flex;
   margin: 0 42px;
+}
+
+@media (max-width: 800px) {
+  .searchContainer {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+    row-gap: 20px
+  }
+
+  .inputSearch {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    gap: 20px;
+  }
+
+  .inputForm {
+    margin: 0;
+  }
 }
 
 .input {

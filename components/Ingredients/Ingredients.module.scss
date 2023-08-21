@@ -78,3 +78,25 @@
 .equipmentText {
   font-style: italic !important;
 }
+
+@media (max-width: 768px) {
+  .ingredientsWrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .quantity {
+    width: 100px;
+    min-width: 100px;
+  }
+
+  .ingredientYield {
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .ingredientYield  > div {
+    max-width: unset;
+    width: 100%
+  }
+}

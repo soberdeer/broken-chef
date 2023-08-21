@@ -6,7 +6,9 @@ import classes from './Search.module.scss';
 
 export interface ButtonProps extends React.HTMLProps<HTMLDivElement> {
   clear(): void;
-  onChange(any):void;
+
+  onChange(any): void;
+
   value?: string,
 }
 
@@ -22,16 +24,20 @@ export default function Search({
       className={cx(className, classes.searchContainer)}
       {...others}
     >
-      <SearchIcon size={30} />
-      <div className={classes.inputForm}>
+      <div className={classes.inputSearch}>
+        <div className={classes.icon}>
+          <SearchIcon size={30} />
+        </div>
+        <div className={classes.inputForm}>
 
-        <input
-          className={classes.input}
-          placeholder="Search for food..."
-          onChange={(e) => onChange(e.target.value)}
-          value={value}
-        />
-        {value.length > 0 && <button className={classes.clear} onClick={clear}><X size={26} /></button>}
+          <input
+            className={classes.input}
+            placeholder="Search for food..."
+            onChange={(e) => onChange(e.target.value)}
+            value={value}
+          />
+          {value.length > 0 && <button className={classes.clear} onClick={clear}><X size={26} /></button>}
+        </div>
       </div>
       <div className={classes.filterButton}>
         <Button className={classes.button}>Filter</Button>

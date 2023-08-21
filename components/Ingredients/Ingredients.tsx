@@ -13,6 +13,7 @@ export default function Ingredients({
   openModal,
   ...others
 }) {
+  console.log(ingredients)
   return (
     <div className={cx(classes.centerContent, classes.ingredients)}>
       <Title order={3}>Ingredients</Title>

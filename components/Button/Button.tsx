@@ -21,14 +21,13 @@ export default function Button<T extends React.ElementType = 'button'>({
 
   if (Element === 'a') {
     return (
-      <Link href={href} shallow>
-        <a
-          className={cx(className, classes.button)}
-          type={type}
-          {...others}
-        >
-          {children}
-        </a>
+      <Link
+        href={href}
+        shallow
+        className={cx(className, classes.button)}
+        type={type}
+        {...others}>
+        {children}
       </Link>
     );
   }

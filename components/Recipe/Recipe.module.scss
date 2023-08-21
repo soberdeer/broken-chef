@@ -75,7 +75,7 @@
 
 .video {
   height: 90%;
-  width: calc(16/9 * .9 * 80vh);
+  width: calc(16 / 9 * .9 * 80vh);
 }
 
 .iframe {
@@ -177,5 +177,28 @@
 
   &:focus-visible {
     outline: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .description {
+    padding: 42px 1rem;
+  }
+
+  .centerContent {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .centerContent {
+    & > .text {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    & > .text:first-child {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 }

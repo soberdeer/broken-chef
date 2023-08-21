@@ -51,7 +51,7 @@ export default function Recipe({
         .replace(/\[link ([^\s]+) (.*?)\]/g, '<a href="$1">$2</a>') || "";
     setDesc(newDesc);
   }, []);
-  // console.log(ingredient)
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.backArrow}>

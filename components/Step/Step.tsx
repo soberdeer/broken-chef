@@ -45,7 +45,7 @@ export default function Step({
       </Paddings>
       {image && (
         <div className={classes.imageContainer}>
-          <img src={image} width={1000} className={classes.image}/>
+          <img src={image} className={classes.image}/>
         </div>
       )}
     </div>
