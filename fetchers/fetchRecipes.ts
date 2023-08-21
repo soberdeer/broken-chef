@@ -1,4 +1,5 @@
 export default async function fetcher(page, query) {
+  console.log(process.env.RECIPES_URL)
   return await fetch(
     process.env.RECIPES_URL,
     {
