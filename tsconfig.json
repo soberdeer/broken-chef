@@ -21,7 +21,7 @@
     "sourceMap": true,
     "noEmitOnError": true,
     "types": [
-      "node",
+      "node"
     ],
     "resolveJsonModule": true,
     "typeRoots": [
@@ -39,6 +39,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "moduleResolution": "node",
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   }
 }
