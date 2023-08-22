@@ -40,25 +40,6 @@
   margin: 0 42px;
 }
 
-@media (max-width: 800px) {
-  .searchContainer {
-    flex-direction: column;
-    padding-left: 0;
-    padding-right: 0;
-    row-gap: 20px
-  }
-
-  .inputSearch {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    gap: 20px;
-  }
-
-  .inputForm {
-    margin: 0;
-  }
-}
-
 .input {
   flex: 0 1 100%;
   font-size: 26px;
@@ -92,5 +73,32 @@
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchContainer {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+    row-gap: 20px;
+    width: 100%;
+  }
+
+  .inputSearch {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    gap: 20px;
+  }
+
+  .inputForm {
+    margin: 0;
+    max-width: unset;
+    flex: unset;
+  }
+
+  .input {
+    font-size: 18px;
+    line-height: 26px;
   }
 }
