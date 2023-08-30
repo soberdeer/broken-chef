@@ -51,7 +51,7 @@ export default function Recipe({
         .replace(/\[link ([^\s]+) (.*?)\]/g, '<a href="$1">$2</a>') || "";
     setDesc(newDesc);
   }, []);
-
+// console.log(`http://www.youtube.com/embed/${youtubeId}?wmode=opaque&modestbranding=1&rel=0&showinfo=0&width=1466&iv_load_policy=3&autoplay=1&loop=0&playsinline=0&controls=1&enablejsapi=1&origin=https%3A%2F%2Fwww.chefsteps.com&widgetid=1`)
   return (
     <div className={classes.wrapper}>
       <div className={classes.backArrow}>
@@ -74,7 +74,7 @@ export default function Recipe({
           <div className={classes.video}>
             <iframe
               className={classes.iframe}
-              src={`http://www.youtube.com/embed/${youtubeId}?wmode=opaque&modestbranding=1&rel=0&showinfo=0&width=1466&iv_load_policy=3&autoplay=1&loop=0&playsinline=0&controls=1&enablejsapi=1&origin=https%3A%2F%2Fwww.chefsteps.com&widgetid=1`}
+              src={`https://www.youtube.com/embed/${youtubeId}?wmode=opaque&modestbranding=1&rel=0&showinfo=0&width=1466&iv_load_policy=3&autoplay=1&loop=0&playsinline=0&controls=1&enablejsapi=1&origin=https%3A%2F%2Fwww.chefsteps.com&widgetid=1`}
               frameBorder="0"
             />
           </div>
