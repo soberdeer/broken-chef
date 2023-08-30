@@ -42,6 +42,12 @@ export default function Recipes({ hits }) {
     }
   };
 
+  const onSearch = (val: string) => {
+    setValue(val);
+    fetchRecipes(0, val).then(response => response.json()).then(res => setCurrentData(res.hits)).catch(() => {
+    });
+  };
+
   useEffect(() => {
     refetch();
   }, [value]);
@@ -59,7 +65,7 @@ export default function Recipes({ hits }) {
     <div className={classes.recipesContainer} onScroll={onScroll} ref={pageRef}>
       <div className={cx(classes.filter, { [classes.showFilter]: showFilter })}>
         <button className={classes.closeFilter} onClick={() => setShowFilter(false)}>
-          <X size={32} color="#43413f"/>
+          <X size={32} color="#43413f" />
         </button>
       </div>
       <Search
@@ -67,7 +73,7 @@ export default function Recipes({ hits }) {
           setValue('');
           setCurrentPage(0);
         }}
-        onChange={setValue}
+        onChange={onSearch}
         value={value}
       />
       <div className={classes.recipes}>
