@@ -11,12 +11,14 @@ export default function Card({
   studio,
   premium,
   className,
+  imageTag,
 }: {
   image?: string,
   href?: string,
   title?: string,
   studio?: boolean,
   premium?: boolean,
+  imageTag?: string;
   _highlightResult?: {
     title?: {
       fullyHighlighted?: boolean,
@@ -38,7 +40,8 @@ export default function Card({
     <div className={cx(classes.card, className)}>
       <a href={href} className={classes.href}>
         <div className={classes.itemImage}>
-          <div className="cs-image-hover-content">
+          <div className={classes.hoverContent}>
+            {!!imageTag && imageTag.length > 0 && <div className={classes.imageTag}>{imageTag}</div> }
             <img src={fixImage(image)} width="100%" height={205} style={{ objectFit: 'cover' }} />
           </div>
         </div>

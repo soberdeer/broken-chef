@@ -115,6 +115,7 @@ export default function Recipes({ hits }) {
                 href={hit.url}
                 studio={hit.studio}
                 premium={hit.premium}
+                imageTag={hit.featured_image_tag}
                 _highlightResult={hit._highlightResult}
               />
             ))
