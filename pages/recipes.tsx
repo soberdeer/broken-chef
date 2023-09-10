@@ -6,51 +6,66 @@ import CardsContainer from '../components/CardsContainer/CardsContainer';
 import Card from '../components/Card/Card';
 import Search from '../components/Search/Search';
 import classes from '../components/CardsContainer/CardsContainer.module.scss';
+import { useDebouncedValue } from '../hooks/use-debounced-value';
 
 export default function Recipes({ hits }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [currentData, setCurrentData] = useState(hits);
   const [value, setValue] = useState('');
+  const [debounced] = useDebouncedValue(value, 200);
   const [showFilter, setShowFilter] = useState(false);
   const pageRef = useRef(null);
 
+  const sortData = (data: any[]) => data.sort((a, b) => {
+    if (a._highlightResult.title.matchLevel === 'full' && b._highlightResult.title.matchLevel === 'none') {
+      return -1;
+    }
+    if (a._highlightResult.title.matchLevel === 'none' && b._highlightResult.title.matchLevel === 'full') {
+      return 1;
+    }
+    if (a._highlightResult.title.matchLevel === 'full' && b._highlightResult.title.matchLevel === 'full') {
+      if (a._highlightResult.matchedWords?.length > b._highlightResult.title.matchedWords?.length) {
+        return -1;
+      }
+      if (b._highlightResult.matchedWords?.length > a._highlightResult.title.matchedWords?.length) {
+        return 1;
+      }
+      return 0;
+    }
+    if (a._highlightResult.title.matchLevel === 'none' && b._highlightResult.title.matchLevel === 'none') {
+      return 0;
+    }
+  });
+
   async function refetch() {
-    const newData = await fetchRecipes(0, value).then(response => response.json());
-    if (value.length > 0) {
-      const sorted = (newData?.hits || []).sort((a, b) => {
-        if (a._highlightResult.title.matchLevel === 'full' && b._highlightResult.title.matchLevel === 'none') return -1;
-        if ((a._highlightResult.title.matchLevel === 'full' && b._highlightResult.title.matchLevel === 'full') ||
-          (a._highlightResult.title.matchLevel === 'none' && b._highlightResult.title.matchLevel === 'none')) return 0;
-        if (a._highlightResult.title.matchLevel === 'none' && b._highlightResult.title.matchLevel === 'full') return 1;
-      });
-      setCurrentData(sorted);
+    const newData = await fetchRecipes(0, debounced).then(response => response.json());
+    if (debounced.length > 0) {
+      setCurrentData(sortData(newData?.hits || []));
     } else {
       setCurrentData(newData?.hits || []);
     }
   }
 
   async function uploadMore() {
-    const newData = await fetchRecipes(currentPage + 1, value).then(response => response.json());
-    setCurrentData([...currentData, ...(newData?.hits || [])]);
+    const newData = await fetchRecipes(currentPage, value).then(response => response.json());
+    setCurrentData([...currentData, ...sortData(newData?.hits || [])]);
   }
 
   const onScroll = () => {
     if (pageRef.current && currentData.length > 0) {
       if (window.innerHeight - pageRef.current.getBoundingClientRect().height === pageRef.current.getBoundingClientRect().top) {
-        uploadMore();
+        setCurrentPage(p => p + 1);
       }
     }
   };
 
-  const onSearch = (val: string) => {
-    setValue(val);
-    fetchRecipes(0, val).then(response => response.json()).then(res => setCurrentData(res.hits)).catch(() => {
-    });
-  };
-
   useEffect(() => {
     refetch();
-  }, [value]);
+  }, [debounced]);
+
+  useEffect(() => {
+    uploadMore();
+  }, [currentPage]);
 
   useEffect(() => {
     if (document) {
@@ -73,7 +88,7 @@ export default function Recipes({ hits }) {
           setValue('');
           setCurrentPage(0);
         }}
-        onChange={onSearch}
+        onChange={setValue}
         value={value}
       />
       <div className={classes.recipes}>
@@ -98,7 +113,7 @@ export default function Recipes({ hits }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const data = await fetchRecipes(0, '').then(response => response.json());
 
   return {

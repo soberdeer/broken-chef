@@ -10,7 +10,7 @@ export default async function fetcher(page, query) {
       },
       body: JSON.stringify({
         query,
-        hitsPerPage: 100,
+        hitsPerPage: 12,
         page,
         numericFilters: ['chefsteps_generated=1', 'published=1', 'include_in_gallery=1'],
         tagFilters: '',
@@ -24,4 +24,3 @@ export default async function fetcher(page, query) {
     },
   );
 }
-
