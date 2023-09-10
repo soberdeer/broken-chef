@@ -38,8 +38,14 @@ export default function Recipes({ hits }) {
   });
 
   async function refetch() {
-    const newData = await fetchRecipes(0, debounced).then(response => response.json());
+    const newData = await fetchRecipes(0, debounced)
+      .then(response => response.json())
+      .catch((err) => {
+        console.log(err);
+        return { hits: [] };
+      });
     if (debounced.length > 0) {
+
       setCurrentData(sortData(newData?.hits || []));
     } else {
       setCurrentData(newData?.hits || []);
@@ -47,7 +53,13 @@ export default function Recipes({ hits }) {
   }
 
   async function uploadMore() {
-    const newData = await fetchRecipes(currentPage, value).then(response => response.json());
+    const newData = await fetchRecipes(currentPage, value)
+      .then(response => response.json())
+      .catch((err) => {
+        console.log(err);
+        return { hits: [] };
+      });
+    ;
     setCurrentData([...currentData, ...sortData(newData?.hits || [])]);
   }
 
@@ -114,7 +126,10 @@ export default function Recipes({ hits }) {
 }
 
 export async function getServerSideProps() {
-  const data = await fetchRecipes(0, '').then(response => response.json());
+  const data = await fetchRecipes(0, '').then(response => response.json()).catch((err) => {
+    console.log(err);
+    return { hits: [] };
+  });
 
   return {
     props: {

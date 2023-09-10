@@ -17,7 +17,7 @@ export default async function fetcher(page, query) {
         facetFilters: [],
         facets: '*',
         advancedSyntax: true,
-        attributesToRetrieve: 'objectid,title,url,slug,image,likes_count,description,has_video,activity_type,premium,studio,featured_image_tag',
+        attributesToRetrieve: 'objectid,title,url,slug,image,likes_count,description,has_video,activity_type,premium,studio,featured_image_tag,source',
         attributesToHighlight: '',
         attributesToSnippet: '',
       }),
