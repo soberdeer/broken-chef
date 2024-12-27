@@ -2,19 +2,23 @@ import React from 'react';
 import RelatedRecipe from './components/RelatedRecipe/RelatedRecipe';
 
 export function replaceText(text) {
+  if (text.includes('Prepare')) {
+    console.log(text)
+  }
   return text?.replaceAll('<br>', '')
     .replaceAll(/[\r\n]/gm, '<br>')
+    .replaceAll('<br><br> <br><br>', '<br><br>')
     .replaceAll('<br><br><br>', '<br>')
-    .replace(/\*\*(.*?)\*\*/g, '<p style="font-weight: bold; padding-top: 20px">$1</p>')
+    .replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold; padding-top: 20px">$1</span>')
+    .replace(/\[c (.*?)\]/g, '$1°C')
     .replace(/\[c (.*?)\]/g, '$1°C')
     .replace(/\[f (.*?)\]/g, (match, p1) => `${((parseFloat(p1) - 32) * (5 / 9)).toFixed(1)}°C`)
     .replace(/\*(.*?)\*/g, '<span style="font-weight: bold">$1</span>')
-    .replace(/\[link ([^\s]+) (.*?)\]/g, '<a href="$1">$2</a>') || '';
+    .replace(/\[([\s\S]*)\]\(([\s\S]*)\)/g, '<a href="$2">$1</a>') || ''
 }
 
 export default function fixText(text, setArr, setText) {
   let newText = replaceText(text);
-
   if (newText.match(/\[fetchActivity ([^\s]+)\]/g)) {
     const arr = newText.match(/\[fetchActivity ([^\s]+)\]/g).map((string, i, a) => (
       <RelatedRecipe
@@ -27,5 +31,9 @@ export default function fixText(text, setArr, setText) {
     setArr(arr);
     newText = newText.replace(/\[fetchActivity ([^\s]+)\]/g, '');
   }
-  setText(newText);
+  if (newText.replaceAll('<br>', '').length === 0) {
+    setText('');
+  } else {
+    setText(newText)
+  }
 }
