@@ -2,9 +2,6 @@ import React from 'react';
 import RelatedRecipe from './components/RelatedRecipe/RelatedRecipe';
 
 export function replaceText(text) {
-  if (text.includes('Prepare')) {
-    console.log(text)
-  }
   return text?.replaceAll('<br>', '')
     .replaceAll(/[\r\n]/gm, '<br>')
     .replaceAll('<br><br> <br><br>', '<br><br>')

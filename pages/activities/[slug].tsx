@@ -3,7 +3,6 @@ import fetchRecipe from '../../fetchers/fetchRecipe';
 import Recipe from '../../components/Recipe/Recipe';
 
 export default function RecipeContainer({ data }) {
-  console.log(data)
   return (
     <Recipe {...data} />
   );
