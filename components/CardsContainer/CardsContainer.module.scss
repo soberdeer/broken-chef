@@ -55,6 +55,13 @@
   padding: 0;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
 @media (min-width: 1195px) {
   .matrix {
     padding: 0 42px;

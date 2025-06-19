@@ -1,8 +1,8 @@
-import React from 'react';
-import cx from 'clsx';
-import Text from '../Text/Text';
-import Title from '../Title/Title';
-import classes from './Ingredients.module.scss';
+import React from "react";
+import cx from "clsx";
+import Text from "../Text/Text";
+import Title from "../Title/Title";
+import classes from "./Ingredients.module.scss";
 
 export default function Ingredients({
   ingredients,
@@ -13,7 +13,6 @@ export default function Ingredients({
   openModal,
   ...others
 }) {
-
   return (
     <div className={cx(classes.centerContent, classes.ingredients)}>
       <Title order={3}>Ingredients</Title>
@@ -23,16 +22,16 @@ export default function Ingredients({
             <div className={classes.ingredient} key={i}>
               <div className={classes.quantity}>
                 <Text className={classes.quantityText}>
-                  {item.quantity !== '0.0'
+                  {item.quantity !== "0.0"
                     ? parseFloat(item.quantity) % 1 === 0
                       ? `${parseInt(item.quantity, 10)}${item.unit}`
                       : `${item.quantity}${item.unit}`
-                    : '-'}
+                    : "-"}
                 </Text>
               </div>
               <div className={classes.ingredientTitle}>
                 <Text className={classes.ingredientTitleText}>
-                  <span style={{ fontWeight: 'bold' }}>
+                  <span style={{ fontWeight: "bold" }}>
                     <button
                       className={classes.itemButton}
                       onClick={() => openModal(item)}
@@ -40,11 +39,11 @@ export default function Ingredients({
                       {item.title}
                     </button>
                   </span>
-                  {(item.note || item.unit === 'a/n') && (
+                  {(item.note || item.unit === "a/n") && (
                     <span>
-                      {`${item.note !== '' ? `, ${item.note}` : ''}${
-                        item.unit === 'a/n' ? ', as needed' : ''
-                      }`.replace(/\[link ([^\s]+) (.*?)\]/g, '')}
+                      {`${item.note !== "" ? `, ${item.note}` : ""}${
+                        item.unit === "a/n" ? ", as needed" : ""
+                      }`.replace(/\[link ([^\s]+) (.*?)\]/g, "")}
                     </span>
                   )}
                 </Text>
@@ -66,7 +65,7 @@ export default function Ingredients({
                           (match, p1) =>
                             `${(parseFloat(p1) * 0.95).toFixed(1)}l`,
                         )
-                        .replace('N2O', `N<sub>2</sub>O`)}
+                        .replace("N2O", `N<sub>2</sub>O`)}
                     </Text>
                   ))}
                 </div>

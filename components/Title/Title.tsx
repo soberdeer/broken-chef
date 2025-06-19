@@ -1,12 +1,14 @@
-import React from 'react';
-import cx from 'clsx';
-import Text, { TextProps } from '../Text/Text';
-import classes from './Title.module.scss';
+import React from "react";
+import cx from "clsx";
+import Text, { TextProps } from "../Text/Text";
+import classes from "./Title.module.scss";
 
-interface TitleProps extends TextProps, Omit<React.HTMLProps<HTMLHeadingElement>, 'style'> {
-  className?: string,
+interface TitleProps
+  extends TextProps,
+    Omit<React.HTMLProps<HTMLHeadingElement>, "style"> {
+  className?: string;
   order?: 1 | 2 | 3 | 4 | 5 | 6;
-  center?: boolean
+  center?: boolean;
 }
 
 export default function Title({
@@ -21,9 +23,11 @@ export default function Title({
     <Text
       {...others}
       component={stringOrder}
-      className={cx(className, classes.title, classes[`h${order}`], {[classes.center]: center})}
+      className={cx(className, classes.title, classes[`h${order}`], {
+        [classes.center]: center,
+      })}
     />
   );
 }
 
-Title.displayName = '@ioa/adapt/Title';
+Title.displayName = "@ioa/adapt/Title";

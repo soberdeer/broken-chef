@@ -1,15 +1,15 @@
-import React from 'react';
-import cx from 'clsx';
-import { X, Search as SearchIcon } from 'react-feather';
-import Button from '../Button/Button';
-import classes from './Search.module.scss';
+import React from "react";
+import cx from "clsx";
+import { X, Search as SearchIcon } from "react-feather";
+import Button from "../Button/Button";
+import classes from "./Search.module.scss";
 
 export interface ButtonProps extends React.HTMLProps<HTMLDivElement> {
   clear(): void;
 
   onChange(any): void;
 
-  value?: string,
+  value?: string;
 }
 
 export default function Search({
@@ -20,23 +20,23 @@ export default function Search({
   ...others
 }: ButtonProps) {
   return (
-    <div
-      className={cx(className, classes.searchContainer)}
-      {...others}
-    >
+    <div className={cx(className, classes.searchContainer)} {...others}>
       <div className={classes.inputSearch}>
         <div className={classes.icon}>
           <SearchIcon size={30} />
         </div>
         <div className={classes.inputForm}>
-
           <input
             className={classes.input}
             placeholder="Search for food..."
             onChange={(e) => onChange(e.target.value)}
             value={value}
           />
-          {value.length > 0 && <button className={classes.clear} onClick={clear}><X size={26} /></button>}
+          {value.length > 0 && (
+            <button className={classes.clear} onClick={clear}>
+              <X size={26} />
+            </button>
+          )}
         </div>
       </div>
       <div className={classes.filterButton}>

@@ -31,7 +31,7 @@ export default function Ingredient({ id, onClose }) {
       }, 200);
     }
   }, [id]);
-// console.log(ingredientData)
+  // console.log(ingredientData)
   return (
     <Modal
       //@ts-ignore

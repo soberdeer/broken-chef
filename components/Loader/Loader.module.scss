@@ -1,0 +1,28 @@
+@keyframes oval-loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ovalLoader {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  transition: opacity 200ms ease;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 36px;
+    border-radius: 10000px;
+    border-width: 4.5px;
+    border-style: solid;
+    border-color: #adb5bd #adb5bd #adb5bd transparent;
+    animation: oval-loader-animation 1.2s linear infinite;
+  }
+}
